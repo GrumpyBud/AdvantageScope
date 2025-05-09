@@ -16,7 +16,6 @@ import WorkerManager from "./WorkerManager";
 import { HistoricalDataSource, HistoricalDataSourceStatus } from "./dataSources/HistoricalDataSource";
 import { LiveDataSource, LiveDataSourceStatus } from "./dataSources/LiveDataSource";
 import LiveDataTuner from "./dataSources/LiveDataTuner";
-import PathPlannerSource from "./dataSources/PathPlannerSource";
 import PhoenixDiagnosticsSource from "./dataSources/PhoenixDiagnosticsSource";
 import { NT4Publisher, NT4PublisherStatus } from "./dataSources/nt4/NT4Publisher";
 import NT4Source from "./dataSources/nt4/NT4Source";
@@ -410,9 +409,6 @@ function startLive(isSim: boolean) {
       break;
     case "phoenix":
       liveSource = new PhoenixDiagnosticsSource();
-      break;
-    case "pathplanner":
-      liveSource = new PathPlannerSource();
       break;
     case "rlog":
       liveSource = new RLOGServerSource();

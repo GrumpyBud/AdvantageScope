@@ -5,7 +5,8 @@ export default interface Preferences {
   theme: "light" | "dark" | "system";
   rioAddress: string;
   rioPath: string;
-  liveMode: "nt4" | "nt4-akit" | "phoenix" | "pathplanner" | "rlog";
+  liveMode: LiveSource;
+  liveSources: LiveSource[];
   liveSubscribeMode: "low-bandwidth" | "logging";
   liveDiscard: number;
   publishFilter: string;
@@ -22,4 +23,32 @@ export default interface Preferences {
   skipXRExperimentalWarning: boolean;
   ctreLicenseAccepted: boolean;
   usb?: boolean;
+}
+
+export type LiveSource = "nt4" | "nt4-akit" | "phoenix" | "rlog";
+
+export function getLiveModeName(mode: LiveSource): string {
+  switch (mode) {
+    case "nt4":
+      return "NetworkTables 4";
+    case "nt4-akit":
+      return "NetworkTables 4 (AdvantageKit)";
+    case "phoenix":
+      return "Phoenix Diagnostics";
+    case "rlog":
+      return "RLOG";
+  }
+}
+
+export function getShortLiveModeName(mode: LiveSource): string {
+  switch (mode) {
+    case "nt4":
+      return "NT4";
+    case "nt4-akit":
+      return "NT4 (AdvantageKit)";
+    case "phoenix":
+      return "Phoenix";
+    case "rlog":
+      return "RLOG";
+  }
 }

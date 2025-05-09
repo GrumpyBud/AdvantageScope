@@ -1,5 +1,5 @@
 import { CoordinateSystem } from "./shared/AdvantageScopeAssets";
-import Preferences from "./shared/Preferences";
+import Preferences, { LiveSource } from "./shared/Preferences";
 
 const THEME = document.getElementById("theme") as HTMLInputElement;
 const RIO_ADDRESS = document.getElementById("rioAddress") as HTMLInputElement;
@@ -63,11 +63,10 @@ window.addEventListener("message", (event) => {
           if (THEME.value === "dark") theme = "dark";
           if (THEME.value === "system") theme = "system";
 
-          let liveMode: "nt4" | "nt4-akit" | "phoenix" | "pathplanner" | "rlog" = "nt4";
+          let liveMode: LiveSource = "nt4";
           if (LIVE_MODE.value === "nt4") liveMode = "nt4";
           if (LIVE_MODE.value === "nt4-akit") liveMode = "nt4-akit";
           if (LIVE_MODE.value === "phoenix") liveMode = "phoenix";
-          if (LIVE_MODE.value === "pathplanner") liveMode = "pathplanner";
           if (LIVE_MODE.value === "rlog") liveMode = "rlog";
 
           let liveSubscribeMode: "low-bandwidth" | "logging" = "low-bandwidth";
@@ -97,6 +96,7 @@ window.addEventListener("message", (event) => {
             rioAddress: RIO_ADDRESS.value,
             rioPath: RIO_PATH.value,
             liveMode: liveMode,
+            liveSources: [],
             liveSubscribeMode: liveSubscribeMode,
             liveDiscard: Number(LIVE_DISCARD.value),
             publishFilter: PUBLISH_FILTER.value,
